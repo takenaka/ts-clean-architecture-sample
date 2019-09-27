@@ -1,17 +1,9 @@
-name: CI
+workflow "Test" {
+  on = "push"
+  resolves = ["GitHub Action for Docker"]
+}
 
-on: [push]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+action "GitHub Action for Docker" {
+  uses = "actions/docker/cli@26aeafa55c124ee6e6ed72676c86772366b1c558"
+  runs = "echo 'hello'"
+}
